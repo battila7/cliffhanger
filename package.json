@@ -1,0 +1,23 @@
+{
+  "name": "cliffhanger",
+  "version": "1.0.0",
+  "description": "An XQuery notebook environment.",
+  "main": "build/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/battila7/cliffhanger.git"
+  },
+  "keywords": [
+    "notebook",
+    "xquery"
+  ],
+  "author": "Attila Bagossy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/battila7/cliffhanger/issues"
+  },
+  "homepage": "https://github.com/battila7/cliffhanger#readme"
+}
