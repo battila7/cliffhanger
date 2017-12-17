@@ -1,0 +1,13 @@
+.xquery-editor {
+    height: 100%;
+    min-height: 100px;
+}
+
+.xquery-editor .ReactCodeMirror {
+    height: 100%;
+}
+
+.visualization-row {
+    background: #f5f8fa;
+    border-top: 1px solid #dfdfdf;
+}

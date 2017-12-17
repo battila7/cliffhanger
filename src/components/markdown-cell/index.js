@@ -52,11 +52,13 @@ const MarkdownCell = ({ beginDrag, close, updateView, view }) => {
 
     return (
         <div className='cell-content-wrapper'>
-            <div className='cell-left'>
-                {cellLeft}
-            </div>
-            <div className='cell-right' onMouseDown={beginDrag}>
-                <CloseButton onClick={close}/>
+            <div className='cell-row'>
+                <div className='cell-left'>
+                    {cellLeft}
+                </div>
+                <div className='cell-right' onMouseDown={beginDrag}>
+                    <CloseButton onClick={close}/>
+                </div>
             </div>
         </div>
     )

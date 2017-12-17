@@ -1,9 +1,65 @@
 import React from 'react';
 
-const XQueryCell = props => {
+import ReactCodeMirror from 'react-codemirror'
+import CodeMirror from 'codemirror';
+import 'codemirror/mode/xquery/xquery';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/keymap/sublime'
+
+import ReactMarkdown from 'react-markdown';
+
+import { CloseButton } from '../cell-buttons';
+
+import './xquery-cell.css';
+import ResultVisualization from '../result-visualization';
+
+const editorOptions = {
+    mode: 'xquery',
+    keyMap: 'sublime',
+    theme: 'default',
+    showPredictions: false
+};
+
+const XQueryEditor = ({ contents, updateView }) => {
+    const extraKeys = {
+        'Ctrl-Enter': () => updateView()
+    };
+
+    const options = Object.assign({}, editorOptions, { extraKeys });
+
     return (
-        <div>XQuery Cell</div>
+        <div className="xquery-editor">
+            <ReactCodeMirror
+                codeMirrorInstance={CodeMirror}
+                onChange={ value =>  updateView({ contents: value }) }
+                value={contents}
+                options={options}
+            />
+        </div>
     );
+};
+
+const XQueryCell = ({ beginDrag, close, updateView, view }) => {
+    return (
+        <div className='cell-content-wrapper'>
+            <div className='cell-row'>
+                <div className='cell-left'>
+                    <XQueryEditor contents={view.contents} updateView={updateView} />
+                </div>
+                <div className='cell-right' onMouseDown={beginDrag}>
+                    <CloseButton onClick={close}/>
+                </div>
+            </div>
+            <div className='cell-row visualization-row'>
+                <div className='cell-left'>
+                    <ResultVisualization />
+                </div>
+                <div className='cell-right' onMouseDown={beginDrag}>
+                    <CloseButton onClick={close}/>
+                </div>
+            </div>
+        </div>
+    )
 };
 
 XQueryCell.TYPE = 'xquery';
