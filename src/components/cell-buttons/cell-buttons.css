@@ -2,7 +2,8 @@
     font-size: 0.85rem;
     padding: 0.2rem;
     text-align: center;
-    color: #989898
+    color: #989898;
+    cursor: pointer;
 }
 
 .cell-button.cell-close-button:hover {

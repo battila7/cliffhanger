@@ -48,8 +48,8 @@
 .bread-row.insert-bottom .divider.divider-bottom,
 .bread-col.insert-left .vertical-divider.divider-left,
 .bread-col.insert-right .vertical-divider.divider-right {
-  background: blue;
-  opacity: 1;
+  background: #81adb5;
+  opacity: 0.6;
 }
 
 .bread-row.insert-top .divider.divider-top::after, 

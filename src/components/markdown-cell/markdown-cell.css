@@ -5,3 +5,11 @@
 .markdown-render strong {
     font-weight: bold;
 }
+
+.markdown-editor {
+    height: 100%;
+}
+
+.markdown-editor .ReactCodeMirror {
+    height: 100%;
+}

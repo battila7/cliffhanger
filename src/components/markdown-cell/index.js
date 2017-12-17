@@ -22,7 +22,7 @@ const editorOptions = {
     showPredictions: false
 };
 
-const MarkdownCell = ({ updateView, view, close }) => {
+const MarkdownCell = ({ beginDrag, close, updateView, view }) => {
     let cellLeft;
 
     if (!view.isInEditorMode) {
@@ -39,7 +39,7 @@ const MarkdownCell = ({ updateView, view, close }) => {
         const options = Object.assign({}, editorOptions, { extraKeys });
 
         cellLeft = (
-            <div>
+            <div className="markdown-editor">
                 <ReactCodeMirror
                     codeMirrorInstance={CodeMirror}
                     onChange={ value =>  updateView({ contents: value }) }
@@ -55,7 +55,7 @@ const MarkdownCell = ({ updateView, view, close }) => {
             <div className='cell-left'>
                 {cellLeft}
             </div>
-            <div className='cell-right'>
+            <div className='cell-right' onMouseDown={beginDrag}>
                 <CloseButton onClick={close}/>
             </div>
         </div>

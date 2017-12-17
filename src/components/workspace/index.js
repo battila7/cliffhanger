@@ -41,37 +41,13 @@ const AddCellArea = function AppendCellButton(props) {
 export default function Workspace(props, context) {
     const instance = Object.create(React.Component.prototype);
 
+    const defaultContents = {
+        [MarkdownCell.TYPE]: '**Double-click** to edit, **Ctrl-Enter** to render.',
+        [XQueryCell.TYPE]: 'XQuery'
+    };
+
     instance.state = {
-        layout: [
-            {
-                rowId: 1,
-                items: [
-                    {
-                        id: 2,
-                        type: 'markdown',
-                        isInEditorMode: false,
-                        contents: '# header\n**sample** *markdown* text'
-                    },
-                    {
-                        id: 5,
-                        type: 'markdown',
-                        isInEditorMode: false,
-                        contents: '# header\n**sample** *markdown* text'
-                    }
-                ]
-            },
-            {
-                rowId: 2,
-                items: [
-                    {
-                        id: 3,
-                        type: 'markdown',
-                        isInEditorMode: false,
-                        contents: '**sample** *markdown* text'
-                    }
-                ]
-            }
-        ]
+        layout: []
     };
 
     instance.props = props;
@@ -86,7 +62,8 @@ export default function Workspace(props, context) {
     instance.addCell = function addCell(type) {
         const cell = {
             id: uuid(),
-            type
+            type,
+            contents: defaultContents[type]
         };
 
         const row = {
