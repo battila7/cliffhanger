@@ -14,7 +14,9 @@ export default function Notebook(props, context) {
                 items: [
                     {
                         id: 2,
-                        type: 'markdown'
+                        type: 'markdown',
+                        isInEditorMode: false,
+                        contents: '**sample** *markdown* text'
                     },
                 ]
             }

@@ -17,9 +17,8 @@ module.exports = {
   module: {
     loaders: [{
       loader: 'babel-loader',
-      include: [path.resolve(__dirname, 'src')],
-      exclude: /node_modules/,
-      test: /\.js$/,
+      include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
+      test: /\.jsx?$/,
       query: {
         presets: ['react']
       }
@@ -27,9 +26,8 @@ module.exports = {
       loader: 'json-loader',
       test: /\.json$/
     }, {
-      loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[local]__[hash:base64:5]'),
-      test: /\.css$/,
-      exclude: /node_modules/
+      loader: ExtractTextPlugin.extract('css-loader', 'css?modules&localIdentName=[local]__[hash:base64:5]'),
+      test: /\.css$/
     }]
   },
   resolve: {
