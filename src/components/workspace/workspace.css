@@ -97,3 +97,26 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.add-cell-container {
+    font-size: 100px;
+    color: #d8d8d8;
+    cursor: pointer;
+    flex-grow: 1;
+    transition: all 200ms ease-in;
+    margin: 0 19px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-cell-button {
+    border: 2px dashed #d8d8d8;
+    border-radius: 2px;
+    text-align: center;
+    flex: 0.495;
+}
+
+.add-cell-button:hover {
+  border: 2px dashed gray;
+  color: gray;
+}
