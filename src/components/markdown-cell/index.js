@@ -21,8 +21,10 @@ const editorOptions = {
 };
 
 const MarkdownCell = ({ updateView, view }) => {
+    let cellLeft;
+
     if (!view.isInEditorMode) {
-        return (
+        cellLeft = (
             <div className='markdown-render' onDoubleClick={ () => updateView({ isInEditorMode: !view.isInEditorMode }) }>
                 <ReactMarkdown source={view.contents} />
             </div>
@@ -34,7 +36,7 @@ const MarkdownCell = ({ updateView, view }) => {
 
         const options = Object.assign({}, editorOptions, { extraKeys });
 
-        return (
+        cellLeft = (
             <div>
                 <ReactCodeMirror
                     codeMirrorInstance={CodeMirror}
@@ -45,6 +47,17 @@ const MarkdownCell = ({ updateView, view }) => {
             </div>
         );
     }
+
+    return (
+        <div className='cell-content-wrapper'>
+            <div className='cell-left'>
+                {cellLeft}
+            </div>
+            <div className='cell-right'>
+                <span></span>
+            </div>
+        </div>
+    )
 };
 
 MarkdownCell.TYPE = 'markdown';

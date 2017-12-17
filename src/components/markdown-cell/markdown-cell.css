@@ -1,3 +1,7 @@
+.markdown-render {
+    padding: 0 0.5rem;
+}
+
 .markdown-render strong {
     font-weight: bold;
 }
