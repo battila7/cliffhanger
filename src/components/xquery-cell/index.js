@@ -8,7 +8,7 @@ import 'codemirror/keymap/sublime'
 
 import ReactMarkdown from 'react-markdown';
 
-import { CloseButton } from '../cell-buttons';
+import { CloseButton, RunButton } from '../cell-buttons';
 
 import './xquery-cell.css';
 import ResultVisualization from '../result-visualization';
@@ -40,24 +40,33 @@ const XQueryEditor = ({ contents, updateView }) => {
 };
 
 const XQueryCell = ({ beginDrag, close, updateView, view }) => {
+    let visualization = null;
+
+    if (view.results) {
+        visualization = (
+            <div className='cell-row visualization-row'>
+                <div className='cell-left'>
+                    <ResultVisualization results={view.results} mode={view.visualizationMode} />
+                </div>
+                <div className='cell-right' onMouseDown={beginDrag}>
+                    <CloseButton onClick={close}/>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className='cell-content-wrapper'>
             <div className='cell-row'>
                 <div className='cell-left'>
                     <XQueryEditor contents={view.contents} updateView={updateView} />
                 </div>
-                <div className='cell-right' onMouseDown={beginDrag}>
+                <div className='cell-right xquery-controls' onMouseDown={beginDrag}>
                     <CloseButton onClick={close}/>
+                    <RunButton onClick={close} />
                 </div>
             </div>
-            <div className='cell-row visualization-row'>
-                <div className='cell-left'>
-                    <ResultVisualization />
-                </div>
-                <div className='cell-right' onMouseDown={beginDrag}>
-                    <CloseButton onClick={close}/>
-                </div>
-            </div>
+            { visualization }
         </div>
     )
 };

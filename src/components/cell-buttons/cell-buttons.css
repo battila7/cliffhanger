@@ -9,3 +9,7 @@
 .cell-button.cell-close-button:hover {
     color: #851111;
 }
+
+.cell-button.cell-run-button:hover {
+    color: #14a15e;
+}

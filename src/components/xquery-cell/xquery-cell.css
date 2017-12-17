@@ -11,3 +11,7 @@
     background: #f5f8fa;
     border-top: 1px solid #dfdfdf;
 }
+
+.cell-right.xquery-controls {
+    justify-content: space-between;
+}

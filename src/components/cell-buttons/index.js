@@ -10,4 +10,15 @@ const CloseButton = ({ onClick }) => {
     );
 };
 
-export { CloseButton };
+const RunButton = ({ onClick }) => {
+    return (
+        <div onClick={onClick} className="cell-button cell-run-button">
+            <i className="fas fa-play"></i>
+        </div>
+    );
+};
+
+export { 
+    CloseButton,
+    RunButton
+};
