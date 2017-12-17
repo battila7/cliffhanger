@@ -16,14 +16,19 @@
     border-radius: 4px;
 }
 
+.cell-container {
+    width: 0;
+    flex: 1;
+}
+
 .cell-content-wrapper {
     display: flex;
     height: 100%;
+    flex: 1;
 }
 
 .cell-left {
     flex-grow: 1;
-    width: 0;
 }
 
 .cell-right {
@@ -31,4 +36,9 @@
     width: 1.5rem;
     background: #f5f8fa;
     border-left: 1px solid #dfdfdf;
+}
+
+.CodeMirror {
+    height: 100%;
+    width: 100%;
 }

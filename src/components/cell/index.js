@@ -9,8 +9,10 @@ export default function Cell(props) {
     const cell = (props.view.type == MarkdownCell.TYPE) ? <MarkdownCell {...props} /> : <XQueryCell {...props} />;
 
     return (
-        <div className='cell'>
-            {cell}
+        <div className='cell-container'>
+            <div className='cell'>
+                {cell}
+            </div>
         </div>
     )
 };
