@@ -1,0 +1,10 @@
+.cell-right .cell-button {
+    font-size: 0.85rem;
+    padding: 0.2rem;
+    text-align: center;
+    color: #989898
+}
+
+.cell-button.cell-close-button:hover {
+    color: #851111;
+}

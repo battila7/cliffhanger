@@ -36,9 +36,14 @@
     width: 1.5rem;
     background: #f5f8fa;
     border-left: 1px solid #dfdfdf;
+    padding: 0.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .CodeMirror {
     height: 100%;
     width: 100%;
 }
+

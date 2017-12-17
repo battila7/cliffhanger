@@ -9,6 +9,8 @@ import 'codemirror/addon/selection/active-line'
 
 import ReactMarkdown from 'react-markdown';
 
+import { CloseButton } from '../cell-buttons';
+
 import './markdown-cell.css';
 
 const editorOptions = {
@@ -20,7 +22,7 @@ const editorOptions = {
     showPredictions: false
 };
 
-const MarkdownCell = ({ updateView, view }) => {
+const MarkdownCell = ({ updateView, view, close }) => {
     let cellLeft;
 
     if (!view.isInEditorMode) {
@@ -54,7 +56,7 @@ const MarkdownCell = ({ updateView, view }) => {
                 {cellLeft}
             </div>
             <div className='cell-right'>
-                <span></span>
+                <CloseButton onClick={close}/>
             </div>
         </div>
     )
