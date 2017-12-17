@@ -1,4 +1,4 @@
-const React = require('react');
+import React from 'react';
 
 const XQueryCell = props => {
     return (
@@ -8,4 +8,4 @@ const XQueryCell = props => {
 
 XQueryCell.TYPE = 'xquery';
 
-module.exports = XQueryCell;
+export default XQueryCell;

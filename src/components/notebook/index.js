@@ -1,48 +1,46 @@
-const React = require('react');
+import React from 'react';
 
-const MarkdownCell = require('../markdown-cell');
-const XQueryCell = require('../xquery-cell');
+import BreadLoaf from 'breadloaf';
 
-const Notebook = function Notebook(props, context) {
+import Cell from '../cell';
+
+export default function Notebook(props, context) {
     const instance = Object.create(React.Component.prototype);
 
     instance.state = {
-        cells: []
+        layout: [
+            {
+                rowId: 1,
+                items: [
+                    {
+                        id: 2,
+                        type: 'markdown'
+                    },
+                ]
+            }
+        ]
     };
 
     instance.props = props;
     instance.context = context;
 
-    instance.addCell = function addMarkdownCell(type) {
+    instance.updateLayout = function updateLayout(layout, trigger, view) {
         this.setState({
-            cells: [...this.state.cells, { type }]
+            layout
         });
     };
 
     instance.render = function render() {
-        const cells = this.state.cells.map(toComponent);
-
         return (
             <div>
-                <h1>Notebook</h1>
-                <div>
-                    {cells}
-                </div>
-                <button onClick={this.addCell.bind(this, MarkdownCell.TYPE)}>New Markdown Cell</button>
-                <button onClick={this.addCell.bind(this, XQueryCell.TYPE)}>New XQueryCell</button>
+                <BreadLoaf 
+                    element={<Cell />}
+                    layout={this.state.layout}
+                    updateLayout={this.updateLayout.bind(this)}
+                />
             </div>
         );
-
-        function toComponent(cell, index) {
-            if (cell.type == XQueryCell.TYPE) {
-                return <XQueryCell key={index} {...cell} />
-            } else {
-                return <MarkdownCell key={index} {...cell} />
-            }
-        }
     }
 
     return instance;
 };
-
-module.exports = Notebook;

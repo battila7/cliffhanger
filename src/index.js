@@ -1,14 +1,10 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const { createStore } = require('redux');
-const { Provider } = require('react-redux');
-const routes = require('./routes');
-
-const store = createStore(() => null);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import routes from './routes';
 
 ReactDOM.render(
-    <Provider store={store}>
+    <div>
         {routes}
-    </Provider>,
+    </div>,
     document.getElementById('app')
 );

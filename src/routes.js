@@ -1,10 +1,12 @@
-const React = require('react');
-const { BrowserRouter, Route } = require('react-router-dom')
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-const Notebook = require('./components/notebook');
+import Notebook from './components/notebook';
 
-module.exports = (
-    <BrowserRouter>
+const routes = (
+    <Router>
         <Route path='/' component={Notebook} />
-    </BrowserRouter>
+    </Router>
 );
+
+export default routes;

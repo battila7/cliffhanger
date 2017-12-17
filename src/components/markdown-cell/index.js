@@ -1,11 +1,13 @@
-const React = require('react');
+import React from 'react';
 
-const MarkdownCell = props => {
+const MarkdownCell = ({ updateView, view }) => {
     return (
-        <div>Markdown Cell</div>
+        <textarea 
+            onChange={ event => updateView({ contents: event.target.value }) }
+            value={view.contents} />
     );
 };
 
 MarkdownCell.TYPE = 'markdown';
 
-module.exports = MarkdownCell;
+export default MarkdownCell;
