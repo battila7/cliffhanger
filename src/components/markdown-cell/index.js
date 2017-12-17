@@ -9,6 +9,8 @@ import 'codemirror/addon/selection/active-line'
 
 import ReactMarkdown from 'react-markdown';
 
+import './markdown-cell.css';
+
 const editorOptions = {
     mode: 'markdown',
     keyMap: "sublime",
@@ -21,18 +23,26 @@ const editorOptions = {
 const MarkdownCell = ({ updateView, view }) => {
     if (!view.isInEditorMode) {
         return (
-            <div onClick={ () => updateView({ isInEditorMode: !view.isInEditorMode }) }>
+            <div className='markdown-render' onDoubleClick={ () => updateView({ isInEditorMode: !view.isInEditorMode }) }>
                 <ReactMarkdown source={view.contents} />
             </div>
         );
     } else {
+        const extraKeys = {
+            'Ctrl-Enter': () => updateView({ isInEditorMode: !view.isInEditorMode })
+        };
+
+        const options = Object.assign({}, editorOptions, { extraKeys });
+
         return (
-            <ReactCodeMirror
-                codeMirrorInstance={CodeMirror}
-                onChange={ value =>  updateView({ contents: value }) }
-                value={view.contents}
-                options={editorOptions}
-            />
+            <div>
+                <ReactCodeMirror
+                    codeMirrorInstance={CodeMirror}
+                    onChange={ value =>  updateView({ contents: value }) }
+                    value={view.contents}
+                    options={options}
+                />
+            </div>
         );
     }
 };

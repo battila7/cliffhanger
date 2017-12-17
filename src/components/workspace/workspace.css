@@ -1,7 +1,83 @@
-.divider {
-    padding: 1em 0em;
+.bread-row > * {
+	display: flex;
 }
 
+.bread-col {
+	flex-basis: 0;
+	flex-grow: 1;
+    display: flex;
+    padding: 5px 0;
+}
+
+.divider {
+    box-sizing: border-box;
+    height: 9px;
+    
+    cursor: vertical-text;
+    padding: 2px 0;
+
+    background-clip: padding-box !important;
+    border: 2px solid transparent;
+    border-left: 0;
+    border-right: 0;
+
+    margin: 0 19px;
+
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+}
+
+.vertical-divider {
+    width: 1px;
+    padding: 0 2px;
+
+    background: transparent;
+    border: 7px solid transparent;
+    background-clip: padding-box !important;
+    border-bottom: 0;
+    border-top: 0;
+    flex-shrink: 0;
+
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+
+    cursor: text;
+}
+
+.bread-row.insert-top .divider.divider-top,
+.bread-row.insert-bottom .divider.divider-bottom,
+.bread-col.insert-left .vertical-divider.divider-left,
+.bread-col.insert-right .vertical-divider.divider-right {
+  background: blue;
+  opacity: 1;
+}
+
+.bread-row.insert-top .divider.divider-top::after, 
+.bread-row.insert-bottom .divider.divider-bottom::after,
+.bread-col.insert-left .vertical-divider.divider-left::after,
+.bread-col.insert-right .vertical-divider.divider-right::after {
+  background: transparent;
+}
+
+.vertical-divider::after {
+  width:1px;
+  background: #D4D4D4;   
+  content: " ";
+  height: 100%;
+  display: block;
+}
+
+.divider:hover, .vertical-divider:hover {
+  opacity: 1;
+}
+
+.divider::after {
+    height:1px;
+    background: #D4D4D4;   
+    content: " ";
+    width: 100%;
+    display: block;
+}
 .bread-col.dragging .slice {
   opacity: 0.3;
 }
@@ -14,73 +90,6 @@
     padding: 10px;
     overflow: hidden;
     flex-grow: 1;
-}
-
-.slice-header {
-    padding: 7px 10px;
-    /* color: white; */
-    background: #ffa116;
-    cursor: pointer;
-    display: flex;
-    white-space: nowrap;
-}
-
-.slice-header button {
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.slice-header button:hover {
-    background: rgba(255,255,255,0.5);
-}
-
-.slice-header .button-toggle {
-    font-size: 11px;
-    margin-top: 5px;
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    color: gray;
-    margin-right: 5px;
-    -webkit-user-select: none;
-}
-
-.slice-header .button-toggle.active {
-    color: purple;
-}
-
-.slice-header .button:hover {
-  color: black;
-}
-
-.slice-header .button.active {
-    color: purple;
-}
-
-
-
-
-
-.fake-slice {
-  border: 2px dashed #d8d8d8;
-  border-radius: 2px;
-  min-height: 30px;
-  padding-bottom: 20px;
-  text-align: center;
-  font-size: 100px;
-  color: #d8d8d8;
-  -webkit-user-select: none;
-  cursor: pointer;
-  flex-grow: 1;
-  transition: all 200ms ease-in;
-    margin: 0 19px;
-}
-
-.fake-slice:hover {
-  border: 2px dashed gray;
-  color: gray;
 }
 
 .row-1 {

@@ -19,6 +19,12 @@ export default function Workspace(props, context) {
                         type: 'markdown',
                         isInEditorMode: false,
                         contents: '# header\n**sample** *markdown* text'
+                    },
+                    {
+                        id: 5,
+                        type: 'markdown',
+                        isInEditorMode: false,
+                        contents: '# header\n**sample** *markdown* text'
                     }
                 ]
             },
