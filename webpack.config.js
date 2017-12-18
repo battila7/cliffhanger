@@ -42,6 +42,11 @@ module.exports = {
           context: path.resolve(__dirname, 'src'),
           from: '*.html',
           to: path.resolve(__dirname, 'build')
+        },
+        {
+          context: path.resolve(__dirname, 'src/img'),
+          from: '*.jpg',
+          to: path.resolve(__dirname, 'build')
         }
     ]),
     new ExtractTextPlugin('styles.css')
