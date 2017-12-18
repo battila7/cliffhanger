@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReactCodeMirror from 'react-codemirror'
+import ReactCodeMirror from '@skidding/react-codemirror'
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/lib/codemirror.css';

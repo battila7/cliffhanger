@@ -1,0 +1,12 @@
+.visualization-selector {
+    display: flex;
+    flex-direction: column;
+}
+
+.visualization-button.selected {
+    color: #888888;
+    border: 1px solid #c5c8ca;
+    margin: 3px;
+    border-radius: 3px;
+    background: #d5d8da;
+}

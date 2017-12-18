@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/battila7/cliffhanger#readme",
   "devDependencies": {
-    "@skidding/react-codemirror": "1.0.1",
+    "@skidding/react-codemirror": "1.0.2",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react": "^6.24.1",

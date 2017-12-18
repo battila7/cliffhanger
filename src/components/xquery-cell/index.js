@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReactCodeMirror from 'react-codemirror'
+import ReactCodeMirror from '@skidding/react-codemirror'
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/xquery/xquery';
 import 'codemirror/lib/codemirror.css';
@@ -14,6 +14,7 @@ import { ClipLoader } from 'halogen';
 
 import './xquery-cell.css';
 import ResultVisualization from '../result-visualization';
+import VisualizationSelector from '../result-visualization/visualization-selector'
 
 const Spinner = () => {
     return (
@@ -58,6 +59,12 @@ const XQueryCell = ({ beginDrag, close, runQuery, updateView, view }) => {
         }
     }
 
+    function updateVisualizationMode(mode) {
+        const visualization = Object.assign({}, view.visualization, { mode });
+        
+        updateView({ visualization });
+    }
+
     function render() {
         return (
             <div className='cell-content-wrapper'>
@@ -79,7 +86,7 @@ const XQueryCell = ({ beginDrag, close, runQuery, updateView, view }) => {
                         <ResultVisualization isError={view.isError} results={view.results} settings={view.visualization} updateView={updateView} />
                     </div>
                     <div className='cell-right' onMouseDown={beginDrag}>
-                        { /* TODO add visualization selector here */ }
+                        <VisualizationSelector onSelect={updateVisualizationMode} selectedMode={view.visualization.mode} />
                     </div>
                 </div>
                 }

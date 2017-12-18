@@ -22,7 +22,7 @@ const ResultVisualization = ({ isError, results, settings, updateView }) => {
         } else {
             return <ErrorVisualization results={ new Error('Please select a visualization mode!') } />;
         }
-    }    
+    }
 
     return (
         <div className='visualization-container'>
