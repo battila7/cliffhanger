@@ -1,0 +1,21 @@
+.error-visualization-container {
+    width: 100%;
+    height: 100%;
+    background: #f68fa0;
+    opacity: 0.8;
+}
+
+.error-visualization-container .sadness-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 0;
+}
+
+.error-visualization-container .sadness-container .frown {
+    font-size: 4em;
+}
+
+.error-visualization-container .sadness-container .error-description {
+    font-weight: bold;
+}

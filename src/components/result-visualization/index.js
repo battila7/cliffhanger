@@ -3,6 +3,8 @@ import React from 'react';
 import ErrorVisualization from './error-visualization';
 import RawVisualization from './raw-visualization';
 
+import './visualization.css'
+
 const visualizationMap = {
     'raw': (results, settings) => <RawVisualization results={results} {...settings} />
 };
@@ -23,7 +25,7 @@ const ResultVisualization = ({ isError, results, settings, updateView }) => {
     }    
 
     return (
-        <div>
+        <div className='visualization-container'>
             { selectVisualization() }
         </div>
     );
