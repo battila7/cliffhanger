@@ -4,7 +4,7 @@ import ErrorVisualization from './error-visualization';
 import RawVisualization from './raw-visualization';
 
 const visualizationMap = {
-    'raw': (results, settings) => <Raw results={results} {...settings} />
+    'raw': (results, settings) => <RawVisualization results={results} {...settings} />
 };
 
 const ResultVisualization = ({ isError, results, settings, updateView }) => {

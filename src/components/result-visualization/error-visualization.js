@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function ErrorVisualization() {
+export default function ErrorVisualization({ results }) {
     return (
-        <div></div>
+        <div>
+            { results.toString() }
+        </div>
     );
 };

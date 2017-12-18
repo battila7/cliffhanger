@@ -65,7 +65,9 @@ export default function Workspace(props, context) {
             [XQueryCell.TYPE]: {
                 contents: 'XQuery',
                 isExecuting: false,
-                visualization: {}
+                visualization: {
+                    mode: 'raw'
+                }
             }
         }[type];
     };
