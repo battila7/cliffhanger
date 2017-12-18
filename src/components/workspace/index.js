@@ -9,6 +9,8 @@ import XQueryCell from '../xquery-cell';
 
 import uuid from '../uuid';
 
+import executeXQuery from '../connection';
+
 import './workspace.css'
 
 const AddCellArea = function AppendCellButton(props) {
@@ -76,11 +78,20 @@ export default function Workspace(props, context) {
         });
     };
 
+    instance.runQuery = function runQuery(queryCode, updateView) {
+        console.log(queryCode);
+
+        executeXQuery(queryCode)
+            .then(response => response.text())
+            .then(text => console.log(text))
+            .catch(result => console.log(result));
+    };
+
     instance.render = function render() {
         return (
             <div>
                 <BreadLoaf 
-                    element={<Cell />}
+                    element={<Cell runQuery={this.runQuery.bind(this)} />}
                     layout={this.state.layout}
                     updateLayout={this.updateLayout.bind(this)}
                     footer={<AddCellArea onClick={this.addCell.bind(this)}/>}

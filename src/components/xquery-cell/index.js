@@ -20,9 +20,9 @@ const editorOptions = {
     showPredictions: false
 };
 
-const XQueryEditor = ({ contents, updateView }) => {
+const XQueryEditor = ({ contents, runQuery, updateView }) => {
     const extraKeys = {
-        'Ctrl-Enter': () => updateView()
+        'Ctrl-Enter': () => runQuery(contents, updateView)
     };
 
     const options = Object.assign({}, editorOptions, { extraKeys });
@@ -39,7 +39,7 @@ const XQueryEditor = ({ contents, updateView }) => {
     );
 };
 
-const XQueryCell = ({ beginDrag, close, updateView, view }) => {
+const XQueryCell = ({ beginDrag, close, runQuery, updateView, view }) => {
     let visualization = null;
 
     if (view.results) {
@@ -63,7 +63,7 @@ const XQueryCell = ({ beginDrag, close, updateView, view }) => {
                 </div>
                 <div className='cell-right xquery-controls' onMouseDown={beginDrag}>
                     <CloseButton onClick={close}/>
-                    <RunButton onClick={close} />
+                    <RunButton onClick={ () => runQuery(view.contents, updateView) } />
                 </div>
             </div>
             { visualization }
