@@ -10,22 +10,32 @@ import ReactMarkdown from 'react-markdown';
 
 import { CloseButton, RunButton } from '../cell-buttons';
 
+import { ClipLoader } from 'halogen';
+
 import './xquery-cell.css';
 import ResultVisualization from '../result-visualization';
 
-const editorOptions = {
-    mode: 'xquery',
-    keyMap: 'sublime',
-    theme: 'default',
-    showPredictions: false
+const Spinner = () => {
+    return (
+        <div className='executing-spinner'>
+            <ClipLoader color='#dbca60' size='0.85rem' /> 
+        </div>
+    );
 };
 
-const XQueryEditor = ({ contents, runQuery, updateView }) => {
+const XQueryEditor = ({ contents, run, updateView }) => {
     const extraKeys = {
-        'Ctrl-Enter': () => runQuery(contents, updateView)
+        'Ctrl-Enter': run
     };
 
-    const options = Object.assign({}, editorOptions, { extraKeys });
+    const defaultOptions = {
+        mode: 'xquery',
+        keyMap: 'sublime',
+        theme: 'default',
+        showPredictions: false
+    };
+
+    const options = Object.assign({}, defaultOptions, { extraKeys });
 
     return (
         <div className="xquery-editor">
@@ -40,35 +50,44 @@ const XQueryEditor = ({ contents, runQuery, updateView }) => {
 };
 
 const XQueryCell = ({ beginDrag, close, runQuery, updateView, view }) => {
-    let visualization = null;
+    function executeQuery() {
+        if (!view.isExecuting) {
+            updateView({ isExecuting: true });
 
-    if (view.results) {
-        visualization = (
-            <div className='cell-row visualization-row'>
-                <div className='cell-left'>
-                    <ResultVisualization results={view.results} mode={view.visualizationMode} />
-                </div>
-                <div className='cell-right' onMouseDown={beginDrag}>
-                    <CloseButton onClick={close}/>
-                </div>
-            </div>
-        );
+            return runQuery(view.contents, updateView);
+        }
     }
 
-    return (
-        <div className='cell-content-wrapper'>
-            <div className='cell-row'>
-                <div className='cell-left'>
-                    <XQueryEditor contents={view.contents} updateView={updateView} />
+    function render() {
+        return (
+            <div className='cell-content-wrapper'>
+                <div className='cell-row'>
+                    <div className='cell-left'>
+                        <XQueryEditor run={executeQuery} contents={view.contents} updateView={updateView} />
+                    </div>
+                    <div className='cell-right xquery-controls' onMouseDown={beginDrag}>
+                        <CloseButton onClick={close}/>
+                        { view.isExecuting ?
+                            <Spinner /> : <RunButton onClick={executeQuery} />
+                        }
+                        
+                    </div>
                 </div>
-                <div className='cell-right xquery-controls' onMouseDown={beginDrag}>
-                    <CloseButton onClick={close}/>
-                    <RunButton onClick={ () => runQuery(view.contents, updateView) } />
+                { view.results &&
+                <div className='cell-row visualization-row'>
+                    <div className='cell-left'>
+                        <ResultVisualization results={view.results} mode={view.visualizationMode} />
+                    </div>
+                    <div className='cell-right' onMouseDown={beginDrag}>
+                        <CloseButton onClick={close}/>
+                    </div>
                 </div>
+                }
             </div>
-            { visualization }
-        </div>
-    )
+        )
+    }
+
+    return render();
 };
 
 XQueryCell.TYPE = 'xquery';

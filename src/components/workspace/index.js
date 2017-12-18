@@ -79,12 +79,14 @@ export default function Workspace(props, context) {
     };
 
     instance.runQuery = function runQuery(queryCode, updateView) {
-        console.log(queryCode);
-
         executeXQuery(queryCode)
-            .then(response => response.text())
-            .then(text => console.log(text))
-            .catch(result => console.log(result));
+            .then(document => ({ results: document, isError: false }))
+            .catch(error => ({ results: error, isError: true }))
+            .then(prevUpdate => {
+                const update = Object.assign({}, prevUpdate, { isExecuting: false });
+
+                updateView(update);
+            });
     };
 
     instance.render = function render() {
