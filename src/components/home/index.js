@@ -3,10 +3,36 @@
 // related parts.
 import React from 'react';
 
+import { connect } from '../connection';
+
 import './home.css';
 
-export default function Home() {
+export default function Home({ history }) {
     const instance = Object.create(React.Component.prototype);
+
+    instance.state = {
+        host: '',
+        username: '',
+        password: ''
+    };
+
+    instance.modifyState = function modifyState(field, value) {
+        const newState = Object.assign({}, this.state, { [field]: value });
+
+        this.setState(newState);
+    };
+
+    instance.connect = function connect() {
+        connect({
+            uri: this.state.host,
+            credentials: {
+                username: this.state.username,
+                password: this.state.password
+            }
+        });
+
+        history.push('/notebook');
+    };
 
     instance.render = function render() {
         return (
@@ -32,7 +58,12 @@ export default function Home() {
                                                     <label htmlFor="host">Host</label>
                                                 </div>
                                                 <div className='input-container'>
-                                                    <input type='text' name="host"/>
+                                                    <input
+                                                        type='text'
+                                                        name="host"
+                                                        value={this.state.host}
+                                                        onChange={e => this.modifyState.bind(this, 'host')(e.target.value)}
+                                                        />
                                                 </div>
                                             </div>
                                             <div className="input-wrapper">
@@ -40,7 +71,12 @@ export default function Home() {
                                                     <label htmlFor="username">Username</label>
                                                 </div>
                                                 <div className='input-container'>
-                                                    <input type='text' name="username"/>
+                                                    <input
+                                                        type='text'
+                                                        name="username"
+                                                        value={this.state.username}
+                                                        onChange={e => this.modifyState.bind(this, 'username')(e.target.value)}
+                                                        />
                                                 </div>
                                             </div>
                                             <div className="input-wrapper">
@@ -48,12 +84,17 @@ export default function Home() {
                                                     <label htmlFor="password">Password</label>
                                                 </div>
                                                 <div className='input-container'>
-                                                    <input type='password' name="password"/>
+                                                    <input
+                                                        type='password'
+                                                        name="password"
+                                                        value={this.state.password}
+                                                        onChange={e => this.modifyState.bind(this, 'password')(e.target.value)}
+                                                        />
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="connection-button">
-                                            <button>Connect to eXist</button>
+                                            <button onClick={this.connect.bind(this)}>Connect to eXist</button>
                                         </div>
                                     </div>
                                 </div>

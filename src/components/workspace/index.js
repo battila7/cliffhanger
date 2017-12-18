@@ -9,7 +9,7 @@ import XQueryCell from '../xquery-cell';
 
 import uuid from '../uuid';
 
-import executeXQuery from '../connection';
+import { executeXQuery } from '../connection';
 
 import './workspace.css'
 

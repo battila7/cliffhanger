@@ -5,6 +5,8 @@ import CodeMirror from 'codemirror';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/lib/codemirror.css';
 
+import './raw-visualization.css';
+
 export default function RawVisualization({ results }) {
     const serializer = new XMLSerializer();
 
@@ -18,7 +20,7 @@ export default function RawVisualization({ results }) {
     };
 
     return (
-        <div>
+        <div className="raw-visualization">
             <ReactCodeMirror
                 codeMirrorInstance={CodeMirror}
                 options={options}

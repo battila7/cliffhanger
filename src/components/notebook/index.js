@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Footer from '../footer';
 import Header from '../header';
 import Workspace from '../workspace';
 
@@ -10,6 +11,7 @@ export default function Notebook() {
         <div>
             <Header />
             <Workspace />
+            <Footer />
         </div>
     );
 };

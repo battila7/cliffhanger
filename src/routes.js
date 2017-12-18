@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 
 import Home from './components/home';
 import Notebook from './components/notebook';
@@ -7,8 +7,8 @@ import Notebook from './components/notebook';
 const routes = (
     <Router>
         <Switch>
-            <Route path='/' component={Home} />
             <Route path='/notebook' component={Notebook} />
+            <Route path='/' component={withRouter(Home)} />
         </Switch>
     </Router>
 );

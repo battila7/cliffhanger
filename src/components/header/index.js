@@ -6,8 +6,8 @@ export default function Header() {
     return (
         <div className='header-container'>
             <div className='header'>
-                <h1>Cliffhanger</h1>
-                <div className='catchphrase'>
+                <div className="notebook-header-title">Cliffhanger</div>
+                <div className='notebook-header-subtitle'>
                     What my mark depends on...
                 </div>
             </div>

@@ -1,25 +1,21 @@
-// REFACTOR THIS, SERIOUSLY
 import Connection from 'exist-query';
 
 const XML_MIME_TYPE = 'application/xml';
 const PARSER_ERROR_NODE = 'parsererror';
 
-const { connection, xmlParser } = (function setup() {
-    const connectionOptions = {
-        uri: 'http://.ngrok.io/exist',
-        credentials: {
-            username: 'admin',
-            password: ''
-        }
-    };
-
+const { xmlParser } = (function setup() {
     return {
-        connection: Connection(connectionOptions),
         xmlParser: new DOMParser()
     };
 })();
 
-export default function executeXQuery(xquery) {
+let connection;
+
+export function connect(connectionOptions) {
+    connection = Connection(connectionOptions);
+}
+
+export function executeXQuery(xquery) {
     return connection.query(xquery)
         .then(response => response.text())
         .then(xmlString => xmlParser.parseFromString(xmlString, XML_MIME_TYPE))
