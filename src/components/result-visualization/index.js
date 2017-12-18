@@ -1,9 +1,30 @@
 import React from 'react';
 
-const ResultVisualization = () => {
+import ErrorVisualization from './error-visualization';
+import RawVisualization from './raw-visualization';
+
+const visualizationMap = {
+    'raw': (results, settings) => <Raw results={results} {...settings} />
+};
+
+const ResultVisualization = ({ isError, results, settings, updateView }) => {
+    function selectVisualization() {
+        if (isError) {
+            return <ErrorVisualization results={results} />
+        }
+
+        const visualizationFactory = visualizationMap[settings.mode];
+
+        if (visualizationFactory) {
+            return visualizationFactory(results, settings);
+        } else {
+            return <ErrorVisualization results={ new Error('Please select a visualization mode!') } />;
+        }
+    }    
+
     return (
         <div>
-            
+            { selectVisualization() }
         </div>
     );
 };

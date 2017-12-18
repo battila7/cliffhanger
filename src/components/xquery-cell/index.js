@@ -76,7 +76,7 @@ const XQueryCell = ({ beginDrag, close, runQuery, updateView, view }) => {
                 { view.results &&
                 <div className='cell-row visualization-row'>
                     <div className='cell-left'>
-                        <ResultVisualization results={view.results} mode={view.visualizationMode} />
+                        <ResultVisualization isError={view.isError} results={view.results} settings={view.visualization} updateView={updateView} />
                     </div>
                     <div className='cell-right' onMouseDown={beginDrag}>
                         <CloseButton onClick={close}/>

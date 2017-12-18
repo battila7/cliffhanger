@@ -2,7 +2,7 @@
 import Connection from 'exist-query';
 
 const XML_MIME_TYPE = 'application/xml';
-const PARSER_ERROR_PROLOG = 'parsererror';
+const PARSER_ERROR_NODE = 'parsererror';
 
 const { connection, xmlParser } = (function setup() {
     const connectionOptions = {
@@ -24,7 +24,7 @@ export default function executeXQuery(xquery) {
         .then(response => response.text())
         .then(xmlString => xmlParser.parseFromString(xmlString, XML_MIME_TYPE))
         .then(tree => {
-            if (tree.documentElement.nodeName == 'parsererror') {
+            if (tree.documentElement.nodeName == PARSER_ERROR_NODE) {
                 throw new Error(tree.documentElement.text);
             } else {
                 return tree;
